@@ -43,6 +43,9 @@
 
 #include "tuklib_common.h"
 
+#if defined(_MSC_VER) && _MSC_VER >= 1400
+# include <windows.h>
+#endif
 
 ////////////////////////////////////////
 // Operating system specific features //
