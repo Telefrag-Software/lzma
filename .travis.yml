@@ -31,8 +31,12 @@ addons:
 matrix:
   include:
     # Linux {
-    - os: linux
-      env: CONFIG=Debug TOOLCHAIN=default
+
+    # Have to use C99:
+    # * https://travis-ci.org/hunter-packages/lzma/jobs/211597893
+    # - os: linux
+    #   env: CONFIG=Debug TOOLCHAIN=default
+
     - os: linux
       env: CONFIG=Debug TOOLCHAIN=clang-libstdcxx
     - os: linux
@@ -52,8 +56,11 @@ matrix:
     - os: linux
       env: CONFIG=Debug TOOLCHAIN=sanitize-thread
 
-    - os: linux
-      env: CONFIG=Release TOOLCHAIN=default
+    # Have to use C99:
+    # * https://travis-ci.org/hunter-packages/lzma/jobs/211597893
+    # - os: linux
+    #   env: CONFIG=Release TOOLCHAIN=default
+
     - os: linux
       env: CONFIG=Release TOOLCHAIN=clang-libstdcxx
     - os: linux
@@ -75,8 +82,12 @@ matrix:
     # }
 
     # OSX {
-    - os: osx
-      env: CONFIG=Debug TOOLCHAIN=default
+
+    # Have to use C99:
+    # * https://travis-ci.org/hunter-packages/lzma/jobs/211597893
+    # - os: osx
+    #   env: CONFIG=Debug TOOLCHAIN=default
+
     - os: osx
       env: CONFIG=Debug TOOLCHAIN=libcxx
     - os: osx
@@ -93,8 +104,11 @@ matrix:
     # - os: osx
     #   env: CONFIG=Debug TOOLCHAIN=analyze
 
-    - os: osx
-      env: CONFIG=Release TOOLCHAIN=default
+    # Have to use C99:
+    # * https://travis-ci.org/hunter-packages/lzma/jobs/211597893
+    # - os: osx
+    #   env: CONFIG=Release TOOLCHAIN=default
+
     - os: osx
       env: CONFIG=Release TOOLCHAIN=libcxx
     - os: osx
