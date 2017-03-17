@@ -85,6 +85,11 @@ include_directories(
 add_library(lzma ${LZMA_SRCS})
 target_compile_definitions(lzma PUBLIC "$<BUILD_INTERFACE:HAVE_CONFIG_H=1>")
 
+if(MSVC AND NOT BUILD_SHARED_LIBS)
+  # See 'windows/INSTALL-MSVC.txt', section 'Notes'
+  target_compile_definitions(lzma INTERFACE "LZMA_API_STATIC")
+endif()
+
 if(CMAKE_C_COMPILER_ID STREQUAL "XL")
   # Disable the XL compiler optimizer because it causes crashes
   # and other bad behavior in liblzma code.
