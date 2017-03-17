@@ -42,7 +42,7 @@ environment:
     # - TOOLCHAIN: "vs-9-2008"
     #   CONFIG: Debug
 
-    - TOOLCHAIN: "mingw"
+    - TOOLCHAIN: "mingw-c11"
       CONFIG: Debug
 
     - TOOLCHAIN: "msys"
@@ -89,7 +89,7 @@ environment:
     # - TOOLCHAIN: "vs-9-2008"
     #   CONFIG: Release
 
-    - TOOLCHAIN: "mingw"
+    - TOOLCHAIN: "mingw-c11"
       CONFIG: Release
 
     - TOOLCHAIN: "msys"
