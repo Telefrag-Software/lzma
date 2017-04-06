@@ -197,14 +197,15 @@ typedef uint64_t uintmax_t;
 #  define LZMA_RESTRICT restrict
 #endif /* HAVE_RESTRICT */
 
-#ifndef HAVE_INLINE
-#  ifdef HAVE___INLINE
-#    define LZMA_INLINE __inline
-#  else
-#    define LZMA_INLINE
-#  endif
-#endif /* HAVE_INLINE */
-
+#if defined(HAVE_INLINE)
+# define LZMA_INLINE inline
+#else
+# if defined(HAVE___INLINE)
+#  define LZMA_INLINE __inline
+# else
+#  define LZMA_INLINE
+# endif
+#endif
 
 #cmakedefine WORDS_BIGENDIAN 1
 
