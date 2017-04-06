@@ -70,20 +70,22 @@ set(LZMA_SRCS
   liblzma/simple/x86.c
   )
 
-include_directories(
-  "common"
-  "liblzma/api"
-  "liblzma/check"
-  "liblzma/common"
-  "liblzma/delta"
-  "liblzma/lz"
-  "liblzma/lzma"
-  "liblzma/rangecoder"
-  "liblzma/simple"
-)
-
 add_library(lzma ${LZMA_SRCS})
 target_compile_definitions(lzma PUBLIC "$<BUILD_INTERFACE:HAVE_CONFIG_H=1>")
+
+target_include_directories(
+    lzma
+    PUBLIC
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/common>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/liblzma/api>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/liblzma/check>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/liblzma/common>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/liblzma/delta>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/liblzma/lz>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/liblzma/lzma>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/liblzma/rangecoder>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/liblzma/simple>"
+)
 
 if(MSVC AND NOT BUILD_SHARED_LIBS)
   # See 'windows/INSTALL-MSVC.txt', section 'Notes'
