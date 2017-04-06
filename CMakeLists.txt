@@ -4,6 +4,8 @@
 cmake_minimum_required(VERSION 3.0)
 project(lzma VERSION 5.2.3)
 
+option(LZMA_BUILD_TESTS "Build tests" OFF)
+
 include(CheckCSourceCompiles)
 include(CheckIncludeFile)
 include(CheckSymbolExists)
@@ -156,3 +158,7 @@ install(
 )
 
 add_subdirectory(src)
+
+if(LZMA_BUILD_TESTS)
+  add_subdirectory(tests)
+endif()
