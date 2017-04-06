@@ -51,7 +51,7 @@ typedef struct {
 } lzma_block_coder;
 
 
-static inline bool
+static LZMA_INLINE bool
 update_size(lzma_vli *size, lzma_vli add, lzma_vli limit)
 {
 	if (limit > LZMA_VLI_MAX)
@@ -66,7 +66,7 @@ update_size(lzma_vli *size, lzma_vli add, lzma_vli limit)
 }
 
 
-static inline bool
+static LZMA_INLINE bool
 is_size_valid(lzma_vli size, lzma_vli reference)
 {
 	return reference == LZMA_VLI_UNKNOWN || reference == size;

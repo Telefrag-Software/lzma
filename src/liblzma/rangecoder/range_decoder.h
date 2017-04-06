@@ -25,7 +25,7 @@ typedef struct {
 
 
 /// Reads the first five bytes to initialize the range decoder.
-static inline lzma_ret
+static LZMA_INLINE lzma_ret
 rc_read_init(lzma_range_decoder *rc, const uint8_t *restrict in,
 		size_t *restrict in_pos, size_t in_size)
 {

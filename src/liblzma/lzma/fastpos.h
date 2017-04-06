@@ -79,7 +79,7 @@
 #	define get_dist_slot(dist) \
 		((dist) <= 4 ? (dist) : get_dist_slot_2(dist))
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 get_dist_slot_2(uint32_t dist)
 {
 	const uint32_t i = bsr32(dist);
@@ -105,7 +105,7 @@ extern const uint8_t lzma_fastpos[1 << FASTPOS_BITS];
 			+ 2 * fastpos_shift(extra, n)
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 get_dist_slot(uint32_t dist)
 {
 	// If it is small enough, we can pick the result directly from
@@ -121,7 +121,7 @@ get_dist_slot(uint32_t dist)
 
 
 #ifdef FULL_DISTANCES_BITS
-static inline uint32_t
+static LZMA_INLINE uint32_t
 get_dist_slot_2(uint32_t dist)
 {
 	assert(dist >= FULL_DISTANCES);

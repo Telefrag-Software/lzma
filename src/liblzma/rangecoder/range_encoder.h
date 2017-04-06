@@ -51,7 +51,7 @@ typedef struct {
 } lzma_range_encoder;
 
 
-static inline void
+static LZMA_INLINE void
 rc_reset(lzma_range_encoder *rc)
 {
 	rc->low = 0;
@@ -63,7 +63,7 @@ rc_reset(lzma_range_encoder *rc)
 }
 
 
-static inline void
+static LZMA_INLINE void
 rc_bit(lzma_range_encoder *rc, probability *prob, uint32_t bit)
 {
 	rc->symbols[rc->count] = bit;
@@ -72,7 +72,7 @@ rc_bit(lzma_range_encoder *rc, probability *prob, uint32_t bit)
 }
 
 
-static inline void
+static LZMA_INLINE void
 rc_bittree(lzma_range_encoder *rc, probability *probs,
 		uint32_t bit_count, uint32_t symbol)
 {
@@ -86,7 +86,7 @@ rc_bittree(lzma_range_encoder *rc, probability *probs,
 }
 
 
-static inline void
+static LZMA_INLINE void
 rc_bittree_reverse(lzma_range_encoder *rc, probability *probs,
 		uint32_t bit_count, uint32_t symbol)
 {
@@ -101,7 +101,7 @@ rc_bittree_reverse(lzma_range_encoder *rc, probability *probs,
 }
 
 
-static inline void
+static LZMA_INLINE void
 rc_direct(lzma_range_encoder *rc,
 		uint32_t value, uint32_t bit_count)
 {
@@ -112,7 +112,7 @@ rc_direct(lzma_range_encoder *rc,
 }
 
 
-static inline void
+static LZMA_INLINE void
 rc_flush(lzma_range_encoder *rc)
 {
 	for (size_t i = 0; i < 5; ++i)
@@ -120,7 +120,7 @@ rc_flush(lzma_range_encoder *rc)
 }
 
 
-static inline bool
+static LZMA_INLINE bool
 rc_shift_low(lzma_range_encoder *rc,
 		uint8_t *out, size_t *out_pos, size_t out_size)
 {
@@ -146,7 +146,7 @@ rc_shift_low(lzma_range_encoder *rc,
 }
 
 
-static inline bool
+static LZMA_INLINE bool
 rc_encode(lzma_range_encoder *rc,
 		uint8_t *out, size_t *out_pos, size_t out_size)
 {
@@ -222,7 +222,7 @@ rc_encode(lzma_range_encoder *rc,
 }
 
 
-static inline uint64_t
+static LZMA_INLINE uint64_t
 rc_pending(const lzma_range_encoder *rc)
 {
 	return rc->cache_size + 5 - 1;

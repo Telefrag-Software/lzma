@@ -20,7 +20,7 @@
 // Literal //
 /////////////
 
-static inline void
+static LZMA_INLINE void
 literal_matched(lzma_range_encoder *rc, probability *subcoder,
 		uint32_t match_byte, uint32_t symbol)
 {
@@ -42,7 +42,7 @@ literal_matched(lzma_range_encoder *rc, probability *subcoder,
 }
 
 
-static inline void
+static LZMA_INLINE void
 literal(lzma_lzma1_encoder *coder, lzma_mf *mf, uint32_t position)
 {
 	// Locate the literal byte to be encoded and the subcoder.
@@ -103,7 +103,7 @@ length_update_prices(lzma_length_encoder *lc, const uint32_t pos_state)
 }
 
 
-static inline void
+static LZMA_INLINE void
 length(lzma_range_encoder *rc, lzma_length_encoder *lc,
 		const uint32_t pos_state, uint32_t len, const bool fast_mode)
 {
@@ -139,7 +139,7 @@ length(lzma_range_encoder *rc, lzma_length_encoder *lc,
 // Match //
 ///////////
 
-static inline void
+static LZMA_INLINE void
 match(lzma_lzma1_encoder *coder, const uint32_t pos_state,
 		const uint32_t distance, const uint32_t len)
 {
@@ -186,7 +186,7 @@ match(lzma_lzma1_encoder *coder, const uint32_t pos_state,
 // Repeated match //
 ////////////////////
 
-static inline void
+static LZMA_INLINE void
 rep_match(lzma_lzma1_encoder *coder, const uint32_t pos_state,
 		const uint32_t rep, const uint32_t len)
 {

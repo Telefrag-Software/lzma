@@ -176,7 +176,7 @@
 // Aligned reads and writes //
 //////////////////////////////
 
-static inline uint16_t
+static LZMA_INLINE uint16_t
 read16be(const uint8_t *buf)
 {
 	uint16_t num = *(const uint16_t *)buf;
@@ -184,7 +184,7 @@ read16be(const uint8_t *buf)
 }
 
 
-static inline uint16_t
+static LZMA_INLINE uint16_t
 read16le(const uint8_t *buf)
 {
 	uint16_t num = *(const uint16_t *)buf;
@@ -192,7 +192,7 @@ read16le(const uint8_t *buf)
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 read32be(const uint8_t *buf)
 {
 	uint32_t num = *(const uint32_t *)buf;
@@ -200,7 +200,7 @@ read32be(const uint8_t *buf)
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 read32le(const uint8_t *buf)
 {
 	uint32_t num = *(const uint32_t *)buf;
@@ -208,7 +208,7 @@ read32le(const uint8_t *buf)
 }
 
 
-static inline uint64_t
+static LZMA_INLINE uint64_t
 read64be(const uint8_t *buf)
 {
 	uint64_t num = *(const uint64_t *)buf;
@@ -216,7 +216,7 @@ read64be(const uint8_t *buf)
 }
 
 
-static inline uint64_t
+static LZMA_INLINE uint64_t
 read64le(const uint8_t *buf)
 {
 	uint64_t num = *(const uint64_t *)buf;
@@ -238,7 +238,7 @@ read64le(const uint8_t *buf)
 #define write64le(buf, num) write64ne((buf), conv64le(num))
 
 
-static inline void
+static LZMA_INLINE void
 write16ne(uint8_t *buf, uint16_t num)
 {
 	*(uint16_t *)buf = num;
@@ -246,7 +246,7 @@ write16ne(uint8_t *buf, uint16_t num)
 }
 
 
-static inline void
+static LZMA_INLINE void
 write32ne(uint8_t *buf, uint32_t num)
 {
 	*(uint32_t *)buf = num;
@@ -254,7 +254,7 @@ write32ne(uint8_t *buf, uint32_t num)
 }
 
 
-static inline void
+static LZMA_INLINE void
 write64ne(uint8_t *buf, uint64_t num)
 {
 	*(uint64_t *)buf = num;
@@ -283,7 +283,7 @@ write64ne(uint8_t *buf, uint64_t num)
 
 #else
 
-static inline uint16_t
+static LZMA_INLINE uint16_t
 unaligned_read16be(const uint8_t *buf)
 {
 	uint16_t num = ((uint16_t)buf[0] << 8) | (uint16_t)buf[1];
@@ -291,7 +291,7 @@ unaligned_read16be(const uint8_t *buf)
 }
 
 
-static inline uint16_t
+static LZMA_INLINE uint16_t
 unaligned_read16le(const uint8_t *buf)
 {
 	uint16_t num = ((uint16_t)buf[0]) | ((uint16_t)buf[1] << 8);
@@ -299,7 +299,7 @@ unaligned_read16le(const uint8_t *buf)
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 unaligned_read32be(const uint8_t *buf)
 {
 	uint32_t num = (uint32_t)buf[0] << 24;
@@ -310,7 +310,7 @@ unaligned_read32be(const uint8_t *buf)
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 unaligned_read32le(const uint8_t *buf)
 {
 	uint32_t num = (uint32_t)buf[0];
@@ -321,7 +321,7 @@ unaligned_read32le(const uint8_t *buf)
 }
 
 
-static inline void
+static LZMA_INLINE void
 unaligned_write16be(uint8_t *buf, uint16_t num)
 {
 	buf[0] = (uint8_t)(num >> 8);
@@ -330,7 +330,7 @@ unaligned_write16be(uint8_t *buf, uint16_t num)
 }
 
 
-static inline void
+static LZMA_INLINE void
 unaligned_write16le(uint8_t *buf, uint16_t num)
 {
 	buf[0] = (uint8_t)num;
@@ -339,7 +339,7 @@ unaligned_write16le(uint8_t *buf, uint16_t num)
 }
 
 
-static inline void
+static LZMA_INLINE void
 unaligned_write32be(uint8_t *buf, uint32_t num)
 {
 	buf[0] = (uint8_t)(num >> 24);
@@ -350,7 +350,7 @@ unaligned_write32be(uint8_t *buf, uint32_t num)
 }
 
 
-static inline void
+static LZMA_INLINE void
 unaligned_write32le(uint8_t *buf, uint32_t num)
 {
 	buf[0] = (uint8_t)num;
@@ -363,7 +363,7 @@ unaligned_write32le(uint8_t *buf, uint32_t num)
 #endif
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 bsr32(uint32_t n)
 {
 	// Check for ICC first, since it tends to define __GNUC__ too.
@@ -420,7 +420,7 @@ bsr32(uint32_t n)
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 clz32(uint32_t n)
 {
 #if defined(__INTEL_COMPILER)
@@ -472,7 +472,7 @@ clz32(uint32_t n)
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 ctz32(uint32_t n)
 {
 #if defined(__INTEL_COMPILER)

@@ -54,7 +54,7 @@ get_literal_price(const lzma_lzma1_encoder *const coder, const uint32_t pos,
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 get_len_price(const lzma_length_encoder *const lencoder,
 		const uint32_t len, const uint32_t pos_state)
 {
@@ -64,7 +64,7 @@ get_len_price(const lzma_length_encoder *const lencoder,
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 get_short_rep_price(const lzma_lzma1_encoder *const coder,
 		const lzma_lzma_state state, const uint32_t pos_state)
 {
@@ -73,7 +73,7 @@ get_short_rep_price(const lzma_lzma1_encoder *const coder,
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 get_pure_rep_price(const lzma_lzma1_encoder *const coder, const uint32_t rep_index,
 		const lzma_lzma_state state, uint32_t pos_state)
 {
@@ -98,7 +98,7 @@ get_pure_rep_price(const lzma_lzma1_encoder *const coder, const uint32_t rep_ind
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 get_rep_price(const lzma_lzma1_encoder *const coder, const uint32_t rep_index,
 		const uint32_t len, const lzma_lzma_state state,
 		const uint32_t pos_state)
@@ -108,7 +108,7 @@ get_rep_price(const lzma_lzma1_encoder *const coder, const uint32_t rep_index,
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 get_dist_len_price(const lzma_lzma1_encoder *const coder, const uint32_t dist,
 		const uint32_t len, const uint32_t pos_state)
 {
@@ -200,7 +200,7 @@ fill_align_prices(lzma_lzma1_encoder *coder)
 // Optimal //
 /////////////
 
-static inline void
+static LZMA_INLINE void
 make_literal(lzma_optimal *optimal)
 {
 	optimal->back_prev = UINT32_MAX;
@@ -208,7 +208,7 @@ make_literal(lzma_optimal *optimal)
 }
 
 
-static inline void
+static LZMA_INLINE void
 make_short_rep(lzma_optimal *optimal)
 {
 	optimal->back_prev = 0;
@@ -268,7 +268,7 @@ backward(lzma_lzma1_encoder *restrict coder, uint32_t *restrict len_res,
 // Main //
 //////////
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 helper1(lzma_lzma1_encoder *restrict coder, lzma_mf *restrict mf,
 		uint32_t *restrict back_res, uint32_t *restrict len_res,
 		uint32_t position)
@@ -440,7 +440,7 @@ helper1(lzma_lzma1_encoder *restrict coder, lzma_mf *restrict mf,
 }
 
 
-static inline uint32_t
+static LZMA_INLINE uint32_t
 helper2(lzma_lzma1_encoder *coder, uint32_t *reps, const uint8_t *buf,
 		uint32_t len_end, uint32_t position, const uint32_t cur,
 		const uint32_t nice_len, const uint32_t buf_avail_full)

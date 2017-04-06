@@ -137,14 +137,14 @@ extern void lzma_sha256_finish(lzma_check_state *check);
 
 #else
 
-static inline void
+static LZMA_INLINE void
 lzma_sha256_init(lzma_check_state *check)
 {
 	LZMA_SHA256FUNC(Init)(&check->state.sha256);
 }
 
 
-static inline void
+static LZMA_INLINE void
 lzma_sha256_update(const uint8_t *buf, size_t size, lzma_check_state *check)
 {
 #if defined(HAVE_CC_SHA256_INIT) && SIZE_MAX > UINT32_MAX
@@ -161,7 +161,7 @@ lzma_sha256_update(const uint8_t *buf, size_t size, lzma_check_state *check)
 }
 
 
-static inline void
+static LZMA_INLINE void
 lzma_sha256_finish(lzma_check_state *check)
 {
 	LZMA_SHA256FUNC(Final)(check->buffer.u8, &check->state.sha256);

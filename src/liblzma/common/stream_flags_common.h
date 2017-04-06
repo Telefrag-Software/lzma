@@ -22,7 +22,7 @@ extern const uint8_t lzma_header_magic[6];
 extern const uint8_t lzma_footer_magic[2];
 
 
-static inline bool
+static LZMA_INLINE bool
 is_backward_size_valid(const lzma_stream_flags *options)
 {
 	return options->backward_size >= LZMA_BACKWARD_SIZE_MIN

@@ -25,7 +25,7 @@
 
 // Rotate a uint32_t. GCC can optimize this to a rotate instruction
 // at least on x86.
-static inline uint32_t
+static LZMA_INLINE uint32_t
 rotr_32(uint32_t num, unsigned amount)
 {
         return (num >> amount) | (num << (32 - amount));

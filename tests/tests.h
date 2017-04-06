@@ -29,7 +29,7 @@
 #define fail(test) expect(test)
 
 
-static inline const char *
+static LZMA_INLINE const char *
 lzma_ret_sym(lzma_ret ret)
 {
 	if ((unsigned int)(ret) > LZMA_PROG_ERROR)
@@ -54,7 +54,7 @@ lzma_ret_sym(lzma_ret ret)
 }
 
 
-static inline bool
+static LZMA_INLINE bool
 coder_loop(lzma_stream *strm, uint8_t *in, size_t in_size,
 		uint8_t *out, size_t out_size,
 		lzma_ret expected_ret, lzma_action finishing_action)
@@ -106,7 +106,7 @@ coder_loop(lzma_stream *strm, uint8_t *in, size_t in_size,
 }
 
 
-static inline bool
+static LZMA_INLINE bool
 decoder_loop_ret(lzma_stream *strm, uint8_t *in, size_t in_size,
 		lzma_ret expected_ret)
 {
@@ -114,7 +114,7 @@ decoder_loop_ret(lzma_stream *strm, uint8_t *in, size_t in_size,
 }
 
 
-static inline bool
+static LZMA_INLINE bool
 decoder_loop(lzma_stream *strm, uint8_t *in, size_t in_size)
 {
 	return coder_loop(strm, in, in_size, NULL, 0,
