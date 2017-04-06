@@ -199,9 +199,9 @@ typedef uint64_t uintmax_t;
 
 #ifndef HAVE_INLINE
 #  ifdef HAVE___INLINE
-#    define inline __inline
+#    define LZMA_INLINE __inline
 #  else
-#    define inline
+#    define LZMA_INLINE
 #  endif
 #endif /* HAVE_INLINE */
 
