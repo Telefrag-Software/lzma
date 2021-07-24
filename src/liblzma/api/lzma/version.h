@@ -16,6 +16,8 @@
 #	error Never include this file directly. Use <lzma.h> instead.
 #endif
 
+#include <stdint.h> // uint32_t
+
 
 /*
  * Version number split into components

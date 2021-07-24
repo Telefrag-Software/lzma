@@ -141,7 +141,7 @@ extern lzma_ret lzma_outq_read(lzma_outq *restrict outq,
 ///
 /// This must be used before getting a new buffer with lzma_outq_get_buf().
 ///
-static inline bool
+static LZMA_INLINE bool
 lzma_outq_has_buf(const lzma_outq *outq)
 {
 	return outq->bufs_used < outq->bufs_allocated;
@@ -149,7 +149,7 @@ lzma_outq_has_buf(const lzma_outq *outq)
 
 
 /// \brief      Test if the queue is completely empty
-static inline bool
+static LZMA_INLINE bool
 lzma_outq_is_empty(const lzma_outq *outq)
 {
 	return outq->bufs_used == 0;

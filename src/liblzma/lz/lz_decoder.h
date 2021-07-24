@@ -99,7 +99,7 @@ extern void lzma_lz_decoder_uncompressed(
 //////////////////////
 
 /// Get a byte from the history buffer.
-static inline uint8_t
+static LZMA_INLINE uint8_t
 dict_get(const lzma_dict *const dict, const uint32_t distance)
 {
 	return dict->buf[dict->pos - distance - 1
@@ -108,7 +108,7 @@ dict_get(const lzma_dict *const dict, const uint32_t distance)
 
 
 /// Test if dictionary is empty.
-static inline bool
+static LZMA_INLINE bool
 dict_is_empty(const lzma_dict *const dict)
 {
 	return dict->full == 0;
@@ -116,7 +116,7 @@ dict_is_empty(const lzma_dict *const dict)
 
 
 /// Validate the match distance
-static inline bool
+static LZMA_INLINE bool
 dict_is_distance_valid(const lzma_dict *const dict, const size_t distance)
 {
 	return dict->full > distance;
@@ -124,7 +124,7 @@ dict_is_distance_valid(const lzma_dict *const dict, const size_t distance)
 
 
 /// Repeat *len bytes at distance.
-static inline bool
+static LZMA_INLINE bool
 dict_repeat(lzma_dict *dict, uint32_t distance, uint32_t *len)
 {
 	// Don't write past the end of the dictionary.
@@ -183,7 +183,7 @@ dict_repeat(lzma_dict *dict, uint32_t distance, uint32_t *len)
 
 /// Puts one byte into the dictionary. Returns true if the dictionary was
 /// already full and the byte couldn't be added.
-static inline bool
+static LZMA_INLINE bool
 dict_put(lzma_dict *dict, uint8_t byte)
 {
 	if (unlikely(dict->pos == dict->limit))
@@ -199,7 +199,7 @@ dict_put(lzma_dict *dict, uint8_t byte)
 
 
 /// Copies arbitrary amount of data into the dictionary.
-static inline void
+static LZMA_INLINE void
 dict_write(lzma_dict *restrict dict, const uint8_t *restrict in,
 		size_t *restrict in_pos, size_t in_size,
 		size_t *restrict left)
@@ -224,7 +224,7 @@ dict_write(lzma_dict *restrict dict, const uint8_t *restrict in,
 }
 
 
-static inline void
+static LZMA_INLINE void
 dict_reset(lzma_dict *dict)
 {
 	dict->need_reset = true;

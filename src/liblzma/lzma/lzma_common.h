@@ -29,7 +29,7 @@
 
 
 /// Validates lc, lp, and pb.
-static inline bool
+static LZMA_INLINE bool
 is_lclppb_valid(const lzma_options_lzma *options)
 {
 	return options->lc <= LZMA_LCLP_MAX && options->lp <= LZMA_LCLP_MAX
@@ -125,7 +125,7 @@ typedef enum {
 	((probs)[(((pos) & lp_mask) << lc) + ((prev_byte) >> (8 - lc))])
 
 
-static inline void
+static LZMA_INLINE void
 literal_init(probability (*probs)[LITERAL_CODER_SIZE],
 		uint32_t lc, uint32_t lp)
 {

@@ -83,7 +83,7 @@ do { \
 // Use sigprocmask() to set the signal mask in single-threaded programs.
 #include <signal.h>
 
-static inline void
+static LZMA_INLINE void
 mythread_sigmask(int how, const sigset_t *restrict set,
 		sigset_t *restrict oset)
 {
@@ -134,7 +134,7 @@ typedef struct timespec mythread_condtime;
 
 // Use pthread_sigmask() to set the signal mask in multi-threaded programs.
 // Do nothing on OpenVMS since it lacks pthread_sigmask().
-static inline void
+static LZMA_INLINE void
 mythread_sigmask(int how, const sigset_t *restrict set,
 		sigset_t *restrict oset)
 {
@@ -152,7 +152,7 @@ mythread_sigmask(int how, const sigset_t *restrict set,
 
 // Creates a new thread with all signals blocked. Returns zero on success
 // and non-zero on error.
-static inline int
+static LZMA_INLINE int
 mythread_create(mythread *thread, void *(*func)(void *arg), void *arg)
 {
 	sigset_t old;
@@ -167,7 +167,7 @@ mythread_create(mythread *thread, void *(*func)(void *arg), void *arg)
 }
 
 // Joins a thread. Returns zero on success and non-zero on error.
-static inline int
+static LZMA_INLINE int
 mythread_join(mythread thread)
 {
 	return pthread_join(thread, NULL);
@@ -175,13 +175,13 @@ mythread_join(mythread thread)
 
 
 // Initiatlizes a mutex. Returns zero on success and non-zero on error.
-static inline int
+static LZMA_INLINE int
 mythread_mutex_init(mythread_mutex *mutex)
 {
 	return pthread_mutex_init(mutex, NULL);
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_mutex_destroy(mythread_mutex *mutex)
 {
 	int ret = pthread_mutex_destroy(mutex);
@@ -189,7 +189,7 @@ mythread_mutex_destroy(mythread_mutex *mutex)
 	(void)ret;
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_mutex_lock(mythread_mutex *mutex)
 {
 	int ret = pthread_mutex_lock(mutex);
@@ -197,7 +197,7 @@ mythread_mutex_lock(mythread_mutex *mutex)
 	(void)ret;
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_mutex_unlock(mythread_mutex *mutex)
 {
 	int ret = pthread_mutex_unlock(mutex);
@@ -215,7 +215,7 @@ mythread_mutex_unlock(mythread_mutex *mutex)
 // used if CLOCK_MONOTONIC isn't available.
 //
 // If clock_gettime() isn't available at all, gettimeofday() will be used.
-static inline int
+static LZMA_INLINE int
 mythread_cond_init(mythread_cond *mycond)
 {
 #ifdef HAVE_CLOCK_GETTIME
@@ -253,7 +253,7 @@ mythread_cond_init(mythread_cond *mycond)
 	return pthread_cond_init(&mycond->cond, NULL);
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_cond_destroy(mythread_cond *cond)
 {
 	int ret = pthread_cond_destroy(&cond->cond);
@@ -261,7 +261,7 @@ mythread_cond_destroy(mythread_cond *cond)
 	(void)ret;
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_cond_signal(mythread_cond *cond)
 {
 	int ret = pthread_cond_signal(&cond->cond);
@@ -269,7 +269,7 @@ mythread_cond_signal(mythread_cond *cond)
 	(void)ret;
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_cond_wait(mythread_cond *cond, mythread_mutex *mutex)
 {
 	int ret = pthread_cond_wait(&cond->cond, mutex);
@@ -279,7 +279,7 @@ mythread_cond_wait(mythread_cond *cond, mythread_mutex *mutex)
 
 // Waits on a condition or until a timeout expires. If the timeout expires,
 // non-zero is returned, otherwise zero is returned.
-static inline int
+static LZMA_INLINE int
 mythread_cond_timedwait(mythread_cond *cond, mythread_mutex *mutex,
 		const mythread_condtime *condtime)
 {
@@ -290,7 +290,7 @@ mythread_cond_timedwait(mythread_cond *cond, mythread_mutex *mutex,
 
 // Sets condtime to the absolute time that is timeout_ms milliseconds
 // in the future. The type of the clock to use is taken from cond.
-static inline void
+static LZMA_INLINE void
 mythread_condtime_set(mythread_condtime *condtime, const mythread_cond *cond,
 		uint32_t timeout_ms)
 {
@@ -382,7 +382,7 @@ typedef struct {
 // make no sense because the other POSIX signal functions are missing anyway.
 
 
-static inline int
+static LZMA_INLINE int
 mythread_create(mythread *thread,
 		unsigned int (__stdcall *func)(void *arg), void *arg)
 {
@@ -394,7 +394,7 @@ mythread_create(mythread *thread,
 	return 0;
 }
 
-static inline int
+static LZMA_INLINE int
 mythread_join(mythread thread)
 {
 	int ret = 0;
@@ -409,33 +409,33 @@ mythread_join(mythread thread)
 }
 
 
-static inline int
+static LZMA_INLINE int
 mythread_mutex_init(mythread_mutex *mutex)
 {
 	InitializeCriticalSection(mutex);
 	return 0;
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_mutex_destroy(mythread_mutex *mutex)
 {
 	DeleteCriticalSection(mutex);
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_mutex_lock(mythread_mutex *mutex)
 {
 	EnterCriticalSection(mutex);
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_mutex_unlock(mythread_mutex *mutex)
 {
 	LeaveCriticalSection(mutex);
 }
 
 
-static inline int
+static LZMA_INLINE int
 mythread_cond_init(mythread_cond *cond)
 {
 #ifdef MYTHREAD_WIN95
@@ -447,7 +447,7 @@ mythread_cond_init(mythread_cond *cond)
 #endif
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_cond_destroy(mythread_cond *cond)
 {
 #ifdef MYTHREAD_WIN95
@@ -457,7 +457,7 @@ mythread_cond_destroy(mythread_cond *cond)
 #endif
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_cond_signal(mythread_cond *cond)
 {
 #ifdef MYTHREAD_WIN95
@@ -467,7 +467,7 @@ mythread_cond_signal(mythread_cond *cond)
 #endif
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_cond_wait(mythread_cond *cond, mythread_mutex *mutex)
 {
 #ifdef MYTHREAD_WIN95
@@ -481,7 +481,7 @@ mythread_cond_wait(mythread_cond *cond, mythread_mutex *mutex)
 #endif
 }
 
-static inline int
+static LZMA_INLINE int
 mythread_cond_timedwait(mythread_cond *cond, mythread_mutex *mutex,
 		const mythread_condtime *condtime)
 {
@@ -507,7 +507,7 @@ mythread_cond_timedwait(mythread_cond *cond, mythread_mutex *mutex,
 #endif
 }
 
-static inline void
+static LZMA_INLINE void
 mythread_condtime_set(mythread_condtime *condtime, const mythread_cond *cond,
 		uint32_t timeout)
 {

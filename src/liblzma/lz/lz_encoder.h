@@ -217,7 +217,7 @@ typedef struct {
 
 
 /// Get pointer to the first byte not ran through the match finder
-static inline const uint8_t *
+static LZMA_INLINE const uint8_t *
 mf_ptr(const lzma_mf *mf)
 {
 	return mf->buffer + mf->read_pos;
@@ -225,7 +225,7 @@ mf_ptr(const lzma_mf *mf)
 
 
 /// Get the number of bytes that haven't been ran through the match finder yet.
-static inline uint32_t
+static LZMA_INLINE uint32_t
 mf_avail(const lzma_mf *mf)
 {
 	return mf->write_pos - mf->read_pos;
@@ -234,7 +234,7 @@ mf_avail(const lzma_mf *mf)
 
 /// Get the number of bytes that haven't been encoded yet (some of these
 /// bytes may have been ran through the match finder though).
-static inline uint32_t
+static LZMA_INLINE uint32_t
 mf_unencoded(const lzma_mf *mf)
 {
 	return mf->write_pos - mf->read_pos + mf->read_ahead;
@@ -248,7 +248,7 @@ mf_unencoded(const lzma_mf *mf)
 /// NOTE: When moving the input window, we need to do it so that the lowest
 /// bits of dict->read_pos are not modified to keep this macro working
 /// as intended.
-static inline uint32_t
+static LZMA_INLINE uint32_t
 mf_position(const lzma_mf *mf)
 {
 	return mf->read_pos - mf->read_ahead;
@@ -263,7 +263,7 @@ mf_position(const lzma_mf *mf)
 /// For example, if mf_find() finds a match of 200 bytes long, the first byte
 /// of that match was already consumed by mf_find(), and the rest 199 bytes
 /// have to be skipped with mf_skip(mf, 199).
-static inline void
+static LZMA_INLINE void
 mf_skip(lzma_mf *mf, uint32_t amount)
 {
 	if (amount != 0) {
@@ -275,7 +275,7 @@ mf_skip(lzma_mf *mf, uint32_t amount)
 
 /// Copies at most *left number of bytes from the history buffer
 /// to out[]. This is needed by LZMA2 to encode uncompressed chunks.
-static inline void
+static LZMA_INLINE void
 mf_read(lzma_mf *mf, uint8_t *out, size_t *out_pos, size_t out_size,
 		size_t *left)
 {
